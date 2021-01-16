@@ -16,7 +16,9 @@ public class PhoneDirectorySearchDaoImpl implements PhoneDirectorySearch {
 	@Override
 	public List<User> searchName(User user) {
 		
-		return loadUserList().stream().filter(p->p.getFirstName().equalsIgnoreCase(user.getFirstName()) || p.getMiddleName().equalsIgnoreCase(user.getMiddleName()) ||p.getLastName().equalsIgnoreCase(user.getLastName()))
+		return loadUserList().stream().filter(p->p.getFirstName().toLowerCase().startsWith(user.getFirstName().toLowerCase()) 
+				|| p.getMiddleName().toLowerCase().startsWith(user.getMiddleName().toLowerCase()) || 
+				p.getLastName().toLowerCase().startsWith(user.getLastName()))
 				.collect(Collectors.toList());
 	}
 	
