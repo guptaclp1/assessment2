@@ -21,6 +21,13 @@ public class SearchServiceImpl implements SearchService {
 		return searchDao.searchName(user);
 	}
 
+	@Override
+	public List<User> searchUser(User user) {
+		return searchDao.searchUser(user);
+	}
+	
+	
+
 	
 
 }

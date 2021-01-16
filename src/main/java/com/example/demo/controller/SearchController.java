@@ -29,7 +29,7 @@ public class SearchController {
 	public Response searchUsers(@RequestBody User user) {
 		if(Requestvalidation.validateUser(user)) {
 			
-			return new Response(searchSearch.searchName(user),Constant.SUCCSS_RESPONSE_CODE,Constant.SUCCESS_MESSAGE);
+			return new Response(searchSearch.searchUser(user),Constant.SUCCSS_RESPONSE_CODE,Constant.SUCCESS_MESSAGE);
 			
 		}else {
 			return new Response("",Constant.ERROR_RESPONSE_CODE,Constant.INVALID_INPUT_MESSAGE);

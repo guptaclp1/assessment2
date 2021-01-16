@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.beans.Address;
@@ -12,15 +14,26 @@ import com.example.demo.phonedirectory.dao.PhoneDirectorySearch;
 
 @Repository
 public class PhoneDirectorySearchDaoImpl implements PhoneDirectorySearch {
+	
+	private final static Logger logger = LoggerFactory.getLogger(PhoneDirectorySearchDaoImpl.class);
 
 	@Override
+	public List<User> searchUser(User user) {
+		return loadUserList().stream().filter(p->p.getFirstName().toLowerCase().startsWith(user.getFirstName().toLowerCase()))
+				.filter(p->p.getMiddleName().toLowerCase().startsWith(user.getMiddleName().toLowerCase()))
+				.filter(p->p.getLastName().toLowerCase().startsWith(user.getLastName().toLowerCase()))
+				.collect(Collectors.toList());
+	}
+	
+	@Override
 	public List<User> searchName(User user) {
-		
 		return loadUserList().stream().filter(p->p.getFirstName().toLowerCase().startsWith(user.getFirstName().toLowerCase()) 
 				|| p.getMiddleName().toLowerCase().startsWith(user.getMiddleName().toLowerCase()) || 
 				p.getLastName().toLowerCase().startsWith(user.getLastName()))
 				.collect(Collectors.toList());
 	}
+	
+	
 	
 	public List<User> loadUserList(){
 		List<User> userList = new ArrayList<>();

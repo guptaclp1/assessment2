@@ -59,4 +59,12 @@ public class User implements Serializable {
 	public void setMobileNo(String mobileNo) {
 		this.mobileNo = mobileNo;
 	}
+
+	@Override
+	public String toString() {
+		return "User [firstName=" + firstName + ", middleName=" + middleName + ", lastName=" + lastName + ", address="
+				+ address + ", mobileNo=" + mobileNo + "]";
+	}
+	
+	
 }
